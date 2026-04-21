@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>institutionName</param-name>
+        <param-value>TAR University College</param-value>
+    </context-param>
+    <context-param>
+        <param-name>storeName</param-name>
+        <param-value>Bling Jewels Online</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>InitServlet</servlet-name>
+        <servlet-class>controller.InitServlet</servlet-class>
+        <init-param>
+            <param-name>facultyName</param-name>
+            <param-value>Faculty of Applied Sciences and Computing</param-value>
+        </init-param>
+        <init-param>
+            <param-name>emailAddress</param-name>
+            <param-value>fasc@acd.tarc.edu.my</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadInitServlet</servlet-name>
+        <servlet-class>controller.LoadInitServlet</servlet-class>
+        <!--        <load-on-startup>0</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitServlet</servlet-name>
+        <url-pattern>/InitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadInitServlet</servlet-name>
+        <url-pattern>/LoadInitServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

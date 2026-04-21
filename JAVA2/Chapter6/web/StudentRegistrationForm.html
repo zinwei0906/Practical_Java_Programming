@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Student Registration Form</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h3>Student Registration Form</h3>
+        <form action="GetParameters">
+            <!-- Name text fields -->
+            <p><label>Last Name</label>
+                <input type="text" name="lastName" size="20" />
+                <label>First Name</label>
+                <input type="text" name="firstName" size="20" /></p>
+            <!-- Gender radio buttons -->
+            <p><label>Gender:</label>
+                <input type="radio" name="gender" value="M" checked="checked" />Male
+                <input type="radio" name="gender" value="F" />Female</p>
+            <!-- Major combo buttons -->
+            <p><label>Major</label>
+                <select name="major">
+                    <option value = "CS">Computer Science</option>
+                    <option value = "Math">Mathematics</option>
+                    <option>English</option>
+                    <option>Chinese</option>
+                </select>
+
+                <!-- Minor list -->
+                <label>Minor</label>
+                <select name="minor" size="2" multiple="multiple">
+                    <option>Computer Science</option>
+                    <option>Mathematics</option>
+                    <option>English</option>
+                    <option>Chinese</option>
+                </select></p>
+            <!-- Hobby check boxes -->
+            <p><label>Hobby:</label>
+                <input type="checkbox" name="tennis" value="ON" />Tennis
+                <input type="checkbox" name="golf" value="ON" />Golf
+                <input type="checkbox" name="pingPong" value="ON" />Ping Pong
+            </p>
+            <!-- Remarks text area -->
+            <p><textarea name="remarks" rows="3" cols="56">
+                </textarea></p>
+            <p><input type="submit" value="Submit" />
+                <input type="reset" value="Reset" /></p>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+SMAP
+NewFactorialBean_jsp.java
+JSP
+*S JSP
+*F
++ 0 NewFactorialBean.jsp
+NewFactorialBean.jsp
+*L
+1,2:46
+3:48,9
+4:54
+5:57
+6:58,2
+7,11:60
+18:71,3
+19:74
+20:75,3
+21,4:78
+*E

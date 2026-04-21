@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="HTML,CSS,JavaScript,PHP,SQL"/>
+        <meta name="author" content="TAN ZIN WEI"/>
+        <title>Loan Information</title>
+        <link rel="stylesheet" type="text/css" href="Form2.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h2 style='margin-left: 35%;'>Compute Loan Payment</h2>
+        <form action="P6Q3Servlet" id="myform" name="myform">
+            <table class="FormTable">
+                <tr>
+                    <td class="Column1">Loan Amount (RM) </td>
+                    <td class="Column2"><input class="inputtext1" type="text" name="loanAmount" required/></td>
+                </tr>
+                <tr>
+                    <td class="Column1">Annual Interest Rate </td>
+                    <td class="Column2"><input class="inputtext1" type="text" name="annualInterestRate" required/></td>
+                </tr>
+                <tr>
+                    <td class="Column1">Number of Years </td>
+                    <td class="Column2"><input class="inputtext1" type="number" name="numberOfYears" required min="1" max="50"/></td>
+                </tr>
+            </table>
+            <!--Submit Button-->
+            <div class="wrapper2">
+                <div class="link_wrapper">
+                    <a><button type="submit" name="submit" id="Submit" value="Submit">Compute Loan Payment</button></a>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!--Clear Button-->
+            <div class="wrapper1">
+                <div class="link_wrapper">
+                    <a href="" name="clear" id="Clear" >Reset</a>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

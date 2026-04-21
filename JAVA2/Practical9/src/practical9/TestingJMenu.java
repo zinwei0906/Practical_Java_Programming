@@ -1,0 +1,172 @@
+/**
+ *
+ * @author Wei
+ */
+package practical9;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+public class TestingJMenu extends JFrame {
+
+    private JTextField jtfName = new JTextField();
+    private JTextField jtfID = new JTextField();
+
+    private ButtonGroup bgProgramme = new ButtonGroup();
+    private JRadioButton jrbDIA2 = new JRadioButton("DIA2");
+    private JRadioButton jrbDIB2 = new JRadioButton("DIB2");
+    private JRadioButton jrbDIT2 = new JRadioButton("DIT2");
+    private JRadioButton jrbDST2 = new JRadioButton("DST2");
+
+    private CheckboxGroup cbgSoftware = new CheckboxGroup();
+    private JCheckBox jcbWindow8 = new JCheckBox("Window 8");
+    private JCheckBox jcbWindow10 = new JCheckBox("Window 10");
+    private JCheckBox jcbVisualStudio2015 = new JCheckBox("Visual Studio 2015");
+    private JCheckBox jcbSQLServer = new JCheckBox("SQL Server");
+    private JButton jbtConfirm = new JButton("Confirm");
+    private JButton jbtClear = new JButton("Clear");
+    private JButton jbtExit = new JButton("Exit");
+
+    public TestingJMenu() {
+        Font font = new Font("TimesRoman", Font.BOLD, 20);
+        //Create one Jpanel is Grid Layout (2,2) in NORTH
+        JPanel p1 = new JPanel(new GridLayout(2, 2));
+        p1.add(new JLabel(" Name")).setFont(font);
+        p1.add(jtfName).setFont(font);
+        p1.add(new JLabel(" ID")).setFont(font);
+        p1.add(jtfID).setFont(font);
+        add(p1, BorderLayout.NORTH);
+
+        //Create one Jpanel is Grid Layout (5,1) in WEST
+        JPanel p2 = new JPanel(new GridLayout(5, 1));
+        p2.add(new JLabel("Programme")).setFont(font);
+        jrbDIA2.setActionCommand("DIA2");
+        jrbDIB2.setActionCommand("DIB2");
+        jrbDIT2.setActionCommand("DIT2");
+        jrbDST2.setActionCommand("DST2");
+        p2.add(jrbDIA2).setFont(font);
+        p2.add(jrbDIB2).setFont(font);
+        p2.add(jrbDIT2).setFont(font);
+        p2.add(jrbDST2).setFont(font);
+
+        //Radio button only can click one value only
+        bgProgramme.add(jrbDIA2);
+        bgProgramme.add(jrbDIB2);
+        bgProgramme.add(jrbDIT2);
+        bgProgramme.add(jrbDST2);
+        add(p2, BorderLayout.WEST);
+
+        //Create one Jpanel is Grid Layout (5,1) in EAST
+        JPanel p3 = new JPanel(new GridLayout(5, 1));
+        p3.add(new JLabel("Software")).setFont(font);
+        p3.add(jcbWindow8).setFont(font);
+        p3.add(jcbWindow10).setFont(font);
+        p3.add(jcbVisualStudio2015).setFont(font);
+        p3.add(jcbSQLServer).setFont(font);
+        add(p3, BorderLayout.EAST);
+
+        //Create one Jpanel is FlowLayout.CENTER in SOUTH
+        JPanel p4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        p4.add(jbtConfirm).setFont(font);
+        p4.add(jbtClear).setFont(font);
+        p4.add(jbtExit).setFont(font);
+        add(p4, BorderLayout.SOUTH);
+
+        setTitle("Check Out System");
+        setSize(400, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+
+        //JMenu
+        JMenuBar mb = new JMenuBar();
+        setJMenuBar(mb);
+
+        JMenu fileMenu = new JMenu("File", false);
+        JMenu helpMenu = new JMenu("Help", true);
+        mb.add(fileMenu).setFont(font);
+        mb.add(helpMenu).setFont(font);
+
+        fileMenu.add(new JMenuItem("new")).setFont(font);
+        fileMenu.add(new JMenuItem("open")).setFont(font);
+        fileMenu.addSeparator();
+        fileMenu.add(new JMenuItem("print")).setFont(font);
+        fileMenu.add(new JMenuItem("exit")).setFont(font);
+        fileMenu.addSeparator();
+
+        JMenu softwareHelpSubMenu = new JMenu("Software");
+        JMenu hardwareHelpSubMenu = new JMenu("Hardware");
+        helpMenu.add(softwareHelpSubMenu).setFont(font);
+        helpMenu.add(hardwareHelpSubMenu).setFont(font);
+        softwareHelpSubMenu.add(new JMenuItem("Unix")).setFont(font);
+        softwareHelpSubMenu.add(new JMenuItem("NT")).setFont(font);
+        softwareHelpSubMenu.add(new JMenuItem("Win95")).setFont(font);
+
+        jbtConfirm.addActionListener(new CheckListener());
+        jbtClear.addActionListener(new CheckListener());
+        jbtExit.addActionListener(new CheckListener());
+    }
+
+    private class CheckListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                if (e.getSource() == jbtConfirm) {
+                    String message = "<br/>Name : " + jtfName.getText() + "<br/>ID : " + jtfID.getText()
+                            + "<br/>Programme : " + bgProgramme.getSelection().getActionCommand()
+                            + "<br/>Software selected : ";
+                    if (jcbWindow8.isSelected()) {
+                        message += "<br/> - Window 8";
+                    }
+                    if (jcbWindow10.isSelected()) {
+                        message += "<br/> - Window 10";
+                    }
+                    if (jcbVisualStudio2015.isSelected()) {
+                        message += "<br/> - Visual Studio 2015";
+                    }
+                    if (jcbSQLServer.isSelected()) {
+                        message += "<br/> - SQL Server";
+                    }
+                    message += "<br/><br/>Is the information correct?";
+                    JLabel showmessage = new JLabel("<html>" + message + "</html>");
+                    Font font = new Font("TimesRoman", Font.BOLD, 18);
+                    showmessage.setFont(font);
+//                    JOptionPane.showMessageDialog(new JFrame(), showmessage, "Check Information", JOptionPane.QUESTION_MESSAGE);
+                    int res = JOptionPane.showOptionDialog(new JFrame(), showmessage, "Check Information",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+                            new Object[]{"Yes", "No"}, JOptionPane.YES_OPTION);
+                    if (res == JOptionPane.YES_OPTION) {
+                        JOptionPane.showMessageDialog(null, "Thank You", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (res == JOptionPane.NO_OPTION) {
+                        JOptionPane.showMessageDialog(null, "No", "Exit", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (res == JOptionPane.CLOSED_OPTION) {
+                        JOptionPane.showMessageDialog(null, "Close", "Exit", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else if (e.getSource() == jbtClear) {
+                    jtfName.setText("");
+                    jtfID.setText("");
+                    bgProgramme.clearSelection();
+                    jcbWindow8.setSelected(false);
+                    jcbWindow10.setSelected(false);
+                    jcbVisualStudio2015.setSelected(false);
+                    jcbSQLServer.setSelected(false);
+                } else if (e.getSource() == jbtExit) {
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Value cant null and empty", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new TestingJMenu();
+    }
+
+}

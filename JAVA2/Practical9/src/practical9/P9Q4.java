@@ -1,0 +1,142 @@
+/**
+ *
+ * @author Wei
+ */
+package practical9;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+public class P9Q4 extends JFrame {
+
+    private JFrame SoftwareCheckOutFrame = new JFrame();
+    private JPanel SoftwareCheckOut;
+
+    private JTextField jtfName = new JTextField();
+    private JTextField jtfID = new JTextField();
+
+    private ButtonGroup bgProgramme = new ButtonGroup();
+    private JRadioButton jrbDIA2 = new JRadioButton("DIA2");
+    private JRadioButton jrbDIB2 = new JRadioButton("DIB2");
+    private JRadioButton jrbDIT2 = new JRadioButton("DIT2");
+    private JRadioButton jrbDST2 = new JRadioButton("DST2");
+
+    private CheckboxGroup cbgSoftware = new CheckboxGroup();
+    private JCheckBox jcbWindow8 = new JCheckBox("Window 8");
+    private JCheckBox jcbWindow10 = new JCheckBox("Window 10");
+    private JCheckBox jcbVisualStudio2015 = new JCheckBox("Visual Studio 2015");
+    private JCheckBox jcbSQLServer = new JCheckBox("SQL Server");
+    private JButton jbtConfirm = new JButton("Confirm");
+    private JButton jbtClear = new JButton("Clear");
+    private JButton jbtExit = new JButton("Exit");
+
+    public P9Q4() {
+        Font font = new Font("TimesRoman", Font.BOLD, 20);
+        //Create one Jpanel is Grid Layout (2,2) in NORTH
+        JPanel p1 = new JPanel(new GridLayout(2, 2));
+        p1.add(new JLabel(" Name")).setFont(font);
+        p1.add(jtfName).setFont(font);
+        p1.add(new JLabel(" ID")).setFont(font);
+        p1.add(jtfID).setFont(font);
+        add(p1, BorderLayout.NORTH);
+
+        //Create one Jpanel is Grid Layout (5,1) in WEST
+        JPanel p2 = new JPanel(new GridLayout(5, 1));
+        p2.add(new JLabel("Programme")).setFont(font);
+        jrbDIA2.setActionCommand("DIA2");
+        jrbDIB2.setActionCommand("DIB2");
+        jrbDIT2.setActionCommand("DIT2");
+        jrbDST2.setActionCommand("DST2");
+        p2.add(jrbDIA2).setFont(font);
+        p2.add(jrbDIB2).setFont(font);
+        p2.add(jrbDIT2).setFont(font);
+        p2.add(jrbDST2).setFont(font);
+
+        //Radio button only can click one value only
+        bgProgramme.add(jrbDIA2);
+        bgProgramme.add(jrbDIB2);
+        bgProgramme.add(jrbDIT2);
+        bgProgramme.add(jrbDST2);
+        add(p2, BorderLayout.WEST);
+
+        //Create one Jpanel is Grid Layout (5,1) in EAST
+        JPanel p3 = new JPanel(new GridLayout(5, 1));
+        p3.add(new JLabel("Software")).setFont(font);
+        p3.add(jcbWindow8).setFont(font);
+        p3.add(jcbWindow10).setFont(font);
+        p3.add(jcbVisualStudio2015).setFont(font);
+        p3.add(jcbSQLServer).setFont(font);
+        add(p3, BorderLayout.EAST);
+
+        //Create one Jpanel is FlowLayout.CENTER in SOUTH
+        JPanel p4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        p4.add(jbtConfirm).setFont(font);
+        p4.add(jbtClear).setFont(font);
+        p4.add(jbtExit).setFont(font);
+        add(p4, BorderLayout.SOUTH);
+
+        setTitle("Check Out System");
+        setSize(400, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+
+        jbtConfirm.addActionListener(new CheckListener());
+        jbtClear.addActionListener(new CheckListener());
+        jbtExit.addActionListener(new CheckListener());
+    }
+
+    private class CheckListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                if (e.getSource() == jbtConfirm) {
+                    String message = "<br/>Name : " + jtfName.getText() + "<br/>ID : " + jtfID.getText()
+                            + "<br/>Programme : " + bgProgramme.getSelection().getActionCommand()
+                            + "<br/>Software selected : ";
+                    if (jcbWindow8.isSelected()) {
+                        message += "<br/> - Window 8";
+                    }
+                    if (jcbWindow10.isSelected()) {
+                        message += "<br/> - Window 10";
+                    }
+                    if (jcbVisualStudio2015.isSelected()) {
+                        message += "<br/> - Visual Studio 2015";
+                    }
+                    if (jcbSQLServer.isSelected()) {
+                        message += "<br/> - SQL Server";
+                    }
+                    SoftwareCheckOut = new P9Q4SoftwareCheckOut(message);
+                    SoftwareCheckOutFrame.add(SoftwareCheckOut, BorderLayout.CENTER);
+                    SoftwareCheckOutFrame.setTitle("Software Check Out System");
+                    SoftwareCheckOutFrame.setSize(300, 400);
+                    SoftwareCheckOutFrame.setVisible(true);
+
+                } else if (e.getSource() == jbtClear) {
+                    jtfName.setText("");
+                    jtfID.setText("");
+                    bgProgramme.clearSelection();
+                    jcbWindow8.setSelected(false);
+                    jcbWindow10.setSelected(false);
+                    jcbVisualStudio2015.setSelected(false);
+                    jcbSQLServer.setSelected(false);
+                } else if (e.getSource() == jbtExit) {
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Value cant null and empty", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new P9Q4();
+    }
+
+}

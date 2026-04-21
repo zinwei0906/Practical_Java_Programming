@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="HTML,CSS,JavaScript,PHP,SQL"/>
+        <meta name="author" content="TAN ZIN WEI"/>
+        <title>Add New Student</title>
+        <link rel="stylesheet" type="text/css" href="Form.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h2 style='margin-left: 35%;'>New Student Details</h2>
+        <form action="P6Q1Servlet" id="myform" name="myform">
+            <table class="FormTable">
+                <tr>
+                    <td class="Column1">Student ID</td>
+                    <td class="Column2"><input class="inputtext1" type="text" name="id" required/></td>
+                </tr>
+                <tr>
+                    <td class="Column1">IC Number</td>
+                    <td class="Column2"><input class="inputtext1" type="text" name="ic" required/></td>
+                </tr>
+                <tr>
+                    <td class="Column1">Name</td>
+                    <td class="Column2"><input class="inputtext1" type="text" name="name" required/></td>
+                </tr>
+                <tr>
+                    <td class="Column1">Level</td>
+                    <td class="Column2">
+                        <input type="checkbox" name="level" class="level-list" value="F" />&nbsp;Foundation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="level" class="level-list" value="D" />&nbsp;Diploma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="level" class="level-list" value="B" />&nbsp;Bachelor&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Column1">Programme</td>
+                    <td class="Column2">
+                        <select class="inputtext1" required name="programme">
+                            <option value="" selected disabled hidden>Choose Here</option>
+                            <option value="IA">INFORMATION SYSTEMS ENGINEERING</option>
+                            <option value="IB">BUSINESS INFORMATION SYSTEMS ENGINEERING</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Column1">Year of Study</td>
+                    <td class="Column2"><input class="inputtext1" type="number" name="year" required min="1" max="20"/></td>
+                </tr>
+            </table>
+            <!--Clear Button-->
+            <div class="wrapper1">
+                <div class="link_wrapper">
+                    <a href="" name="clear" id="Clear" >CLEAR</a>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!--Submit Button-->
+            <div class="wrapper2">
+                <div class="link_wrapper">
+                    <a><button type="submit" name="submit" id="Submit" value="Submit">SUBMIT!</button></a>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script>
+            //Allow User choose one checkbox only
+            $('.level-list').on('change', function () {
+                $('.level-list').not(this).prop('checked', false);
+            });
+
+            $(document).ready(function () {
+                $("#Submit").click(function () {
+                    //User cant empty the checkbox must choose one checkbox
+                    if ($("input[class=level-list]").is(":checked")) {
+                        return true;
+                    } else {
+                        alert("Please Choose One Level!!!");
+                        return false;
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
